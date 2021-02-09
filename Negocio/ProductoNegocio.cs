@@ -10,14 +10,13 @@ namespace Negocio
 {
     public class ProductoNegocio
     {
-        public SqlCommand comando { get; set; }
         public List<Producto> listar()
         {
             List<Producto> lista = new List<Producto>();
             AccesoDatos acceso = new AccesoDatos();
             acceso.conectar();
-            acceso.setearQuery("SELECT P.Id, P.Nombre, P.Stock, P.Precio, P.Descripcion, P.ImagenURL, M.Nombre AS Marca, C.Nombre AS Categoria FROM PRODUCTO AS P INNER JOIN MARCA AS M ON M.Id = P.Marca INNER JOIN CATEGORIA AS C ON C.Id = P.IdCategoria");
-
+            acceso.setearQuery("SELECT P.Id,P.Nombre,P.Stock,P.Precio,P.Descripcion,P.ImagenURL,M.Nombre AS Marca,C.Nombre AS Categoria FROM PRODUCTO AS P INNER JOIN MARCA AS M ON M.Id = P.Marca INNER JOIN CATEGORIA AS C ON C.Id = P.IdCategoria");
+            
             SqlDataReader lector = acceso.leer();
 
             while (lector.Read())
