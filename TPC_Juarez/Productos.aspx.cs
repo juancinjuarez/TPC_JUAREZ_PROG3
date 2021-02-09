@@ -11,10 +11,10 @@ namespace TPC_Juarez
 {
     public partial class Productos : System.Web.UI.Page
     {
-        public List<Producto> listaProductos { get; set; }
+        public List<Produ> listaProductos { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-            ProductoNegocio negocioP = new ProductoNegocio();
+            ProduNegocio negocioP = new ProduNegocio();
             listaProductos = negocioP.listar();
         }
     }

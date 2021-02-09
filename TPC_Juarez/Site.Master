@@ -47,7 +47,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" runat="server" href="~/">INSTRUMENTOS JUAREZ</a>
+                    <a style="text-align:center;" class="navbar-brand" runat="server" href="~/">INSTRUMENTOS JUAREZ</a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
@@ -56,7 +56,10 @@
                             <asp:Button runat="server" ID="btnBuscar" OnClick="btnBuscar_Click" CssClass="btn btn-primary" Text="Buscar" />
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="Login.aspx">Iniciar Sesión</a>
+                            <a class="nav-link" href="IngresoUser.aspx">Iniciar Sesión</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="RegistroUser.aspx">Registrarse</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="Carrito.aspx"><img src="Iconos/carrito.png" alt="" height="50"/></a>

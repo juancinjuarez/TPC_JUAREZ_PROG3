@@ -45,10 +45,10 @@
                             <tr>
                                 <td><%=item.producto.nombre %></td>
                                 <td><%=item.producto.precio %></td>
-                                <td><a class="btn btn-primary btn-lg" href="Carrito.aspx?idBajar=<%=item.producto.id.ToString() %>" role="button">-</a></td>
+                                <td><a class="btn btn-primary btn-lg" href="Carrito.aspx?idBajar=<%=item.producto.idProdu.ToString() %>" role="button">-</a></td>
                                 <td><%=item.cantidad %></td>
-                                <td><a class="btn btn-primary btn-lg" href="Carrito.aspx?idSumar=<%= item.producto.id.ToString() %>" role="button">+</a></td>
-                                <td><a class="btn btn-primary" href="Carrito.aspx?idCancelar=<%= item.producto.id.ToString() %>" role="button">Eliminar</a></td>
+                                <td><a class="btn btn-primary btn-lg" href="Carrito.aspx?idSumar=<%= item.producto.idProdu.ToString() %>" role="button">+</a></td>
+                                <td><a class="btn btn-primary" href="Carrito.aspx?idCancelar=<%= item.producto.idProdu.ToString() %>" role="button">Eliminar</a></td>
                             </tr>
                         </tbody>
                         <%}%>
@@ -62,8 +62,10 @@
                 <div class="jumbotron">
                     <h3>Resumen de su compra</h3>
                     <h5>Total : $<asp:Label ID="lbtotal" Text="" runat="server" /></h5>
+                    <form runat="server">
 
-                    <a class="btn btn-success" href="Compra.aspx?idCompra" role="button">Realizar compra</a>
+                    <asp:Button Text="Realizar Compra" ID="btnRealizarCompra" CssClass="btn btn-primary"  OnClick="btnRealizarCompra_Click" runat="server" BackColor="#66FF33" />
+                    </form>
 
                 </div>
             </div>

@@ -11,11 +11,11 @@ namespace TPC_Juarez
 {
     public partial class _Default : Page
     {
-        public List<Producto> listaProducto { get; set; }
+        public List<Produ> listaProdu { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-            ProductoNegocio negocio = new ProductoNegocio();
-            listaProducto = negocio.listar();
+            ProduNegocio negocio = new ProduNegocio();
+            listaProdu = negocio.listar();
         }
     }
 }

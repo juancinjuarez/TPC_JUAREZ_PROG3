@@ -9,10 +9,13 @@ namespace Dominio
     public class Usuario
     {
         public int idUser { get; set; }
-        public string nombre { get; set; }
+        public string Nombre { get; set; }
+        public string Apellido { get; set; }
+        public string dni { get; set; }
+        public string telefono { get; set; }
+        public string mail { get; set; }
+        public string direccion { get; set; }
         public string contrasenia { get; set; }
-        public int idt { get; set; }
-        public int idp { get; set; }
 
     }
 }

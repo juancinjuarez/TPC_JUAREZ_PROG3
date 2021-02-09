@@ -11,16 +11,16 @@ namespace TPC_Juarez
 {
     public partial class SiteMaster : MasterPage
     {
-        public List<Producto> listaBusqueda { get; set; }
+        public List<Produ> listaBusqueda { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-            listaBusqueda = (List<Producto>)Session["listaprodu"];
+            listaBusqueda = (List<Produ>)Session["listaprodu"];
         }
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
-            List<Producto> lista = new List<Producto>();
-            ProductoNegocio produNegocio = new ProductoNegocio();
+            List<Produ> lista = new List<Produ>();
+            ProduNegocio produNegocio = new ProduNegocio();
 
             try
             {

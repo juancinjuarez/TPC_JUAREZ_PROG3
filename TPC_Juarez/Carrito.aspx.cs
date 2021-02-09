@@ -11,7 +11,7 @@ namespace TPC_Juarez
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
-        public Producto producto { get; set; }
+        public Produ producto { get; set; }
         public List<Carrito> listaCarrito { get; set; }
         public Carrito carrito = new Carrito();
         public ItemCarrito itemCarrito = new ItemCarrito();
@@ -28,12 +28,12 @@ namespace TPC_Juarez
 
                 if (Request.QueryString["idProducto"] != null)
                 {
-                    producto = new Producto();
-                    ProductoNegocio negocio = new ProductoNegocio();
+                    producto = new Produ();
+                    ProduNegocio negocio = new ProduNegocio();
                     int idProd = Convert.ToInt32(Request.QueryString["idProducto"]);
 
-                    producto = negocio.listar().Find(X => X.id == idProd);
-                    ItemCarrito item = carrito.listaItem.Find(H => H.producto.id == producto.id);
+                    producto = negocio.listar().Find(X => X.idProdu == idProd);
+                    ItemCarrito item = carrito.listaItem.Find(H => H.producto.idProdu == producto.idProdu);
 
                     if (item == null)
                     {
@@ -48,7 +48,7 @@ namespace TPC_Juarez
                 var sumar = Request.QueryString["idSumar"];
                 if (sumar != null)
                 {
-                    ItemCarrito itemSumar = carrito.listaItem.Find(X => X.producto.id == int.Parse(sumar));
+                    ItemCarrito itemSumar = carrito.listaItem.Find(X => X.producto.idProdu == int.Parse(sumar));
                     itemSumar.cantidad += 1;
                     Session["carrito"] = carrito.listaItem;
                     Response.Redirect("Carrito.aspx");
@@ -56,7 +56,7 @@ namespace TPC_Juarez
                 var restar = Request.QueryString["idBajar"];
                 if (restar != null)
                 {
-                    ItemCarrito item = carrito.listaItem.Find(K => K.producto.id == int.Parse(restar));
+                    ItemCarrito item = carrito.listaItem.Find(K => K.producto.idProdu == int.Parse(restar));
                     if (item.cantidad > 1)
                     {
                         item.cantidad--;
@@ -70,48 +70,13 @@ namespace TPC_Juarez
                 {
                     int cancelar = Convert.ToInt32(Request.QueryString["idCancelar"]);
 
-                    ItemCarrito item = carrito.listaItem.Find(F => F.producto.id == cancelar);
+                    ItemCarrito item = carrito.listaItem.Find(F => F.producto.idProdu == cancelar);
                     if (item != null)
                     {
                         carrito.listaItem.Remove(item);
                         Session["carrito"] = carrito.listaItem;
                         Response.Redirect("Carrito.aspx");
                     }
-                }
-                var comprar = Convert.ToInt32(Request.QueryString["idCompra"]);
-                if (comprar != 0)
-                {
-                    Producto producto = new Producto();
-                    Venta venta = new Venta();
-                    Detalle detalle = new Detalle();
-                    VentaNegocio ventaNegocio = new VentaNegocio();
-
-                    //DateTime fechaCompra = DateTime.Now();
-
-                    Usuario usuario = (Usuario)Session["carrito"];
-                    decimal totalCompra = carrito.SubTotal();
-                    venta.usuario.idUser = usuario.idUser;
-                    //venta.fecha = fechaCompra;
-                    venta.formaPago = "1";
-                    ventaNegocio.AgregarVenta(venta);
-
-                    if (usuario == null)
-                    {
-                        Response.Redirect("Login.aspx");
-                    }
-                    else
-                    {
-                        foreach (var item in carrito.listaItem)
-                        {
-                            detalle.idVenta.id = venta.id;
-                            detalle.idProducto.id = item.id;
-                            detalle.cantidad = item.cantidad;
-                            detalle.precioUnitario = item.precio;
-
-                            ventaNegocio.AgregarDetalleVenta(detalle);
-                        }
-                    }
-                    Response.Redirect("DetalleVenta.aspx");
                 }
             }
             catch (Exception)
@@ -121,5 +86,62 @@ namespace TPC_Juarez
             lbtotal.Text = carrito.SubTotal().ToString();
         }
 
+        protected void btnRealizarCompra_Click(object sender, EventArgs e)
+        {
+            Usuario usuario = (Usuario)Session["userSession"];
+
+            if ((List<ItemCarrito>)Session["carrito"] == null)
+            {
+                Session["error"] = "Error al intentar realizar la compra";
+                Response.Redirect("Error.aspx");
+            }
+            else if (usuario == null)
+            {
+                Response.Redirect("IngresoUser.aspx", false);
+            }
+            else
+            {
+                carrito.listaItem = (List<ItemCarrito>)Session["carrito"];
+                List<Venta> listaVentas = new List<Venta>();
+                Detalle detalle = new Detalle();
+                Venta venta = new Venta();
+                Produ producto = new Produ();
+                VentaNegocio ventaNegocio = new VentaNegocio();
+                venta.usuario = new Usuario();
+                detalle.idProducto = new Produ();
+                detalle.idVenta = new Venta();
+
+                decimal totalCompra = carrito.SubTotal();
+                venta.usuario.idUser = usuario.idUser;
+                DateTime fechaCompra = DateTime.Now;
+                venta.fecha = fechaCompra;
+                venta.formaPago = "1";
+                ventaNegocio.AgregarVenta(venta);
+
+                listaVentas = ventaNegocio.Listar();
+                int idVenta = 0;
+
+                foreach (var item in listaVentas)
+                {
+                    if (item.usuario.idUser == usuario.idUser)
+                    {
+                        idVenta = item.id;
+                    }
+                }
+                venta.id = idVenta;
+
+                foreach (var item in carrito.listaItem)
+                {
+                    detalle.precioUnitario = item.producto.precio;
+                    detalle.cantidad = item.cantidad;
+                    detalle.idProducto.idProdu = item.producto.idProdu;
+                    detalle.idVenta.id = idVenta;
+
+                    ventaNegocio.AgregarDetalleVenta(detalle);
+                }
+                Response.Redirect("FinCompra.aspx");
+            }
+        }
     }
 }
+

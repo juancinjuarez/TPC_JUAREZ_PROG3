@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <article class="card-columns">
-                    <%foreach (Dominio.Producto item in listaProductos)
+                    <%foreach (Dominio.Produ item in listaProductos)
                         {%>
                     <div class="card tarjeta-catalogo" style="width: 18rem;">
                         <img src="<%=item.imagenURL %>" class="card-img-top align-content-center" alt="alternative-text" width="280" height="250">
