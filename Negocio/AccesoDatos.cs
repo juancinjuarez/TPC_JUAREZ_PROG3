@@ -18,7 +18,7 @@ namespace Negocio
         public AccesoDatos()
         {
 
-            conexion = new SqlConnection("data source=T480S-JMJ\\SQLEXPRESS; initial catalog=JUAREZ_DB; integrated security=sspi");
+            conexion = new SqlConnection("data source=ARWS2622\\SQLEXPRESS; initial catalog=JUAREZ_DB; integrated security=sspi");
 
             comando = new SqlCommand();
             comando.Connection = conexion;

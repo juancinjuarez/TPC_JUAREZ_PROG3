@@ -4,3 +4,9 @@ C:\Users\jmjuarez\source\repos\TPC_Juarez\Dominio\obj\Debug\Dominio.csprojAssemb
 C:\Users\jmjuarez\source\repos\TPC_Juarez\Dominio\obj\Debug\Dominio.csproj.CoreCompileInputs.cache
 C:\Users\jmjuarez\source\repos\TPC_Juarez\Dominio\obj\Debug\Dominio.dll
 C:\Users\jmjuarez\source\repos\TPC_Juarez\Dominio\obj\Debug\Dominio.pdb
+C:\Users\abs1pzz\Downloads\TPC_JUAREZ_PROG3-master\TPC_JUAREZ_PROG3-master\Dominio\bin\Debug\Dominio.dll
+C:\Users\abs1pzz\Downloads\TPC_JUAREZ_PROG3-master\TPC_JUAREZ_PROG3-master\Dominio\bin\Debug\Dominio.pdb
+C:\Users\abs1pzz\Downloads\TPC_JUAREZ_PROG3-master\TPC_JUAREZ_PROG3-master\Dominio\obj\Debug\Dominio.csproj.AssemblyReference.cache
+C:\Users\abs1pzz\Downloads\TPC_JUAREZ_PROG3-master\TPC_JUAREZ_PROG3-master\Dominio\obj\Debug\Dominio.csproj.CoreCompileInputs.cache
+C:\Users\abs1pzz\Downloads\TPC_JUAREZ_PROG3-master\TPC_JUAREZ_PROG3-master\Dominio\obj\Debug\Dominio.dll
+C:\Users\abs1pzz\Downloads\TPC_JUAREZ_PROG3-master\TPC_JUAREZ_PROG3-master\Dominio\obj\Debug\Dominio.pdb

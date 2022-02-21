@@ -10,12 +10,9 @@ namespace Dominio
     {
         public int idUser { get; set; }
         public string Nombre { get; set; }
-        public string Apellido { get; set; }
-        public string dni { get; set; }
-        public string telefono { get; set; }
-        public string mail { get; set; }
-        public string direccion { get; set; }
-        public string contrasenia { get; set; }
+        public string contrasenia { get; set;}
+        public int idTipo { get; set; }
 
+        public Persona persona { get; set; }
     }
 }

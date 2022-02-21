@@ -16,5 +16,6 @@ namespace Dominio
         public string imagenURL { get; set; }
         public Marca marca { get; set; }
         public Categoria categoria { get; set; }
+        public bool eliminado { get; set; }
     }
 }
